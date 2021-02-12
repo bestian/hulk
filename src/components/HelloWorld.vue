@@ -106,6 +106,6 @@ export default {
 
 .devil {
   position: absolute;
-  width: 3vw;
+  width: 30px;
 }
 </style>
