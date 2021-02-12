@@ -73,16 +73,20 @@ export default {
       }
     },
     dx () {
-        this.t2 += 60
+      this.t2 += 60
+      this.kill()
     },
     dx2 () {
-        this.t2 -= 60
+      this.t2 -= 60
+      this.kill()
     },
     dy () {
-        this.t += 60
+      this.t += 60
+      this.kill()
     },
     dy2 () {
-        this.t -= 60
+      this.t -= 60
+      this.kill()
     },
     move(e) {
       if(e.which == 38) {
@@ -118,5 +122,9 @@ export default {
 #ctrl {
   position: relative;
   z-index: 9999;
+}
+
+button {
+  font-size: 36px;
 }
 </style>
