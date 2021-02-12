@@ -1,7 +1,13 @@
 <template>
-  <div class="hello" @keydown="move($event)" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy" v-touch:swipe.down.prevent="dy2">
+  <div class="hello" @keydown="move($event)" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
     <img id="hulk" src="./img/hulk.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
     <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
+    <div id = "ctrl">
+      <button id = "up" @click="dy2">up</button>
+      <button id = "down" @click="dy">down</button>
+      <button id = "left" @click="dx2">left</button>
+      <button id = "right" @click="dx">right</button>
+    </div>
   </div>
 </template>
 
@@ -107,5 +113,10 @@ export default {
 .devil {
   position: absolute;
   width: 30px;
+}
+
+#ctrl {
+  position: relative;
+  z-index: 9999;
 }
 </style>
