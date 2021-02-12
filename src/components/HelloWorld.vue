@@ -33,8 +33,8 @@ export default {
           t2: Math.floor(Math.random()*window.innerWidth)
         }
     })
-    setInterval(this.randmove, 500)
-    setInterval(this.addItem, 2000)
+    setInterval(this.randmove, 100)
+    setInterval(this.addItem, 500)
   },
   methods: {
     addItem () {
@@ -58,8 +58,8 @@ export default {
     },
     randmove() {
       this.devils = this.devils.map(function(o) {
-        o.t += Math.floor(Math.random()*5 - 2)
-        o.t2 += Math.floor(Math.random()*5 - 2)
+        o.t += Math.floor(Math.random()*11 - 5)
+        o.t2 += Math.floor(Math.random()*11 - 5)
         return o
       })
     },
