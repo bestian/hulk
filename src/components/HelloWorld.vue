@@ -114,6 +114,12 @@ export default {
   width: 400px;
 }
 
+@media screen and (max-width: 600px) {
+  #hulk {
+    width: 25vw;
+  }
+}
+
 .devil {
   position: absolute;
   width: 30px;
