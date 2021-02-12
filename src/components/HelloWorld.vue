@@ -1,7 +1,7 @@
 <template>
   <div class="hello" @keydown="move($event)" tabindex="0" v-touch:swipe.left="dx" v-touch:swipe.right="dx2" v-touch:swipe.up="dy" v-touch:swipe.down="dy2">
-    <img id="hulk" src="/img/hulk2.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
-    <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="/img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
+    <img id="hulk" src="./img/hulk.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
+    <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
   </div>
 </template>
 
