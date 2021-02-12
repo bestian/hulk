@@ -116,7 +116,7 @@ export default {
 
 @media screen and (max-width: 600px) {
   #hulk {
-    width: 25vw;
+    width: 33vw;
   }
 }
 
