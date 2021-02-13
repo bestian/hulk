@@ -1,12 +1,21 @@
 <template>
   <div class="hello" @keydown="move($event)" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
+    <audio id="boom">
+      <source src="Boom.ogg" type="audio/ogg">
+      <source src="Boom.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
     <img id="hulk" src="./img/hulk.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
     <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
     <div id = "ctrl">
-      <button id = "up" @click="dy2">up</button>
-      <button id = "down" @click="dy">down</button>
-      <button id = "left" @click="dx2">left</button>
-      <button id = "right" @click="dx">right</button>
+      <button id = "up" @click="dy2">&#11145;
+</button>
+      <button id = "down" @click="dy">&#11147;
+</button>
+      <button id = "left" @click="dx2">&#11144;
+</button>
+      <button id = "right" @click="dx">&#11146;
+</button>
     </div>
   </div>
 </template>
@@ -34,9 +43,17 @@ export default {
         }
     })
     setInterval(this.randmove, 100)
-    setInterval(this.addItem, 500)
+    setInterval(this.addItem, 1500)
   },
   methods: {
+     play() {
+        var audio = document.getElementById('boom')
+        if (audio.paused) {
+            audio.play()
+        } else {
+          audio.currentTime = 0
+        }
+    },
     addItem () {
       this.devils.push({
           id: this.idx,
@@ -65,9 +82,13 @@ export default {
     },
     kill () {
       var collide = this.collide
+      var l1 = this.devils.length
       this.devils = this.devils.filter(function (o) {
         return !collide(document.getElementById(o.id), document.getElementById('hulk'))
       })
+      if (this.devils.length < l1) {
+        this.play()
+      }
       if (this.devils.length == 0) {
         alert('YOU WIN!!')
       }
@@ -111,7 +132,7 @@ export default {
 <style scoped>
 #hulk {
   position: absolute;
-  width: 400px;
+  width: 300px;
 }
 
 @media screen and (max-width: 600px) {
@@ -126,8 +147,38 @@ export default {
 }
 
 #ctrl {
-  position: relative;
+  position: absolute;
+  bottom: 150px;
+  left: 50px;
   z-index: 9999;
+}
+
+button {
+  border-radius: 50%;
+}
+
+#up {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#down {
+  position: absolute;
+  top: 80px;
+  left: 0;
+}
+
+#left {
+  position: absolute;
+  top: 40px;
+  left: -40px;
+}
+
+#right {
+  position: absolute;
+  top: 40px;
+  left: 40px;
 }
 
 button {
