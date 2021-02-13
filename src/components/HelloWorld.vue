@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" @keydown="move($event)" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
+  <div class="hello" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
     <audio id="boom">
       <source src="Boom.ogg" type="audio/ogg">
       <source src="Boom.mp3" type="audio/mpeg">
@@ -44,6 +44,7 @@ export default {
     })
     setInterval(this.randmove, 100)
     setInterval(this.addItem, 1500)
+    document.addEventListener('keydown', this.move)
   },
   methods: {
      play() {
