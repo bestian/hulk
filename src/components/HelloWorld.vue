@@ -8,13 +8,13 @@
     <img id="hulk" src="./img/hulk.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
     <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
     <div id = "ctrl">
-      <button id = "up" @click="dy2">&#11145;
+      <button id = "up" @click="dy2">&#8593;
 </button>
-      <button id = "down" @click="dy">&#11147;
+      <button id = "down" @click="dy">&#8595;
 </button>
-      <button id = "left" @click="dx2">&#11144;
+      <button id = "left" @click="dx2">&#8592;
 </button>
-      <button id = "right" @click="dx">&#11146;
+      <button id = "right" @click="dx">&#8594;
 </button>
     </div>
   </div>
@@ -183,6 +183,9 @@ button {
 }
 
 button {
+  display: inline-block;
   font-size: 36px;
+  width: 52px !important;
+  height: 52px !important;
 }
 </style>
