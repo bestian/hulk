@@ -78,12 +78,8 @@ export default {
     },
     playbg() {
       var audio = document.getElementById('bg')
+      audio.play()
       audio.loop = true
-      if (audio.paused) {
-          audio.play()
-      } else {
-        audio.currentTime = 0
-      }
      },
      play() {
         var audio = document.getElementById('boom')
