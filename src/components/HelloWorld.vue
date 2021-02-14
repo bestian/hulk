@@ -1,13 +1,13 @@
 <template>
   <div class="hello" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
     <audio id="bg">
-      <source src="bg.ogg" type="audio/ogg">
       <source src="bg.mp3" type="audio/mpeg">
+      <source src="bg.ogg" type="audio/ogg">
     Your browser does not support the audio element.
     </audio>
     <audio id="boom">
-      <source src="Boom.ogg" type="audio/ogg">
       <source src="Boom.mp3" type="audio/mpeg">
+      <source src="Boom.ogg" type="audio/ogg">
     Your browser does not support the audio element.
     </audio>
     <div id = "time">還剩{{time}}秒</div>
