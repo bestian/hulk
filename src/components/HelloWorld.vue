@@ -1,6 +1,6 @@
 <template>
   <div class="hello" tabindex="0" v-touch:swipe.left="dx2" v-touch:swipe.right="dx" v-touch:swipe.up="dy2" v-touch:swipe.down="dy">
-    <audio id="bg">
+    <audio id="bg" allow="autoplay">
       <source src="bg.mp3" type="audio/mpeg">
       <source src="bg.ogg" type="audio/ogg">
     Your browser does not support the audio element.
@@ -12,7 +12,7 @@
     </audio>
     <div id = "time">還剩{{time}}秒</div>
     <img id="hulk" src="./img/hulk.png" :style="{top: t + 'px', left:t2 + 'px'}">
-    <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
+    <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.png" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
     <div id = "ctrl">
       <button id = "up" @click="dy2">&#8593;
 </button>
@@ -78,8 +78,12 @@ export default {
     },
     playbg() {
       var audio = document.getElementById('bg')
-      audio.play()
-      audio.loop = true
+        if (audio.paused) {
+            audio.play()
+        } else {
+          audio.currentTime = 0
+        }
+        audio.loop = true
      },
      play() {
         var audio = document.getElementById('boom')
