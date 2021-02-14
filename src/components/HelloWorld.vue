@@ -1,11 +1,17 @@
 <template>
   <div class="hello" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
+    <audio id="bg">
+      <source src="bg.ogg" type="audio/ogg">
+      <source src="bg.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
     <audio id="boom">
       <source src="Boom.ogg" type="audio/ogg">
       <source src="Boom.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
     </audio>
-    <img id="hulk" src="./img/hulk.jpg" :style="{top: t + 'px', left:t2 + 'px'}">
+    <div id = "time">還剩{{time}}秒</div>
+    <img id="hulk" src="./img/hulk.png" :style="{top: t + 'px', left:t2 + 'px'}">
     <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.jpg" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
     <div id = "ctrl">
       <button id = "up" @click="dy2">&#8593;
@@ -16,6 +22,12 @@
 </button>
       <button id = "right" @click="dx">&#8594;
 </button>
+    </div>
+    <div id = "win" v-show = "win" @click="reset()">
+      <img src="./win.jpg"/>
+    </div>
+    <div id = "lose" v-show = "lose" @click="reset()">
+      <img src="./lose.png"/>
     </div>
   </div>
 </template>
@@ -31,10 +43,14 @@ export default {
       t: 0,
       t2: 0,
       idx: 6,
-      devils: []
+      devils: [],
+      time: 100,
+      win: false,
+      lose: false
     }
   },
   mounted () {
+    setTimeout(this.playbg, 1000)
     this.devils = [0, 1, 2, 3, 4, 5].map(function (i) {
         return {
           id: 'd' + i,
@@ -44,9 +60,31 @@ export default {
     })
     setInterval(this.randmove, 100)
     setInterval(this.addItem, 1500)
+    setInterval(this.go, 1000)
     document.addEventListener('keydown', this.move)
   },
   methods: {
+    reset() {
+      this.win = false
+      this.lose = false
+      this.time = 100
+    },
+    go() {
+      this.time--
+      if (this.time <= 0) {
+        this.lose = true
+        this.time = 100
+      }
+    },
+    playbg() {
+      var audio = document.getElementById('bg')
+      audio.loop = true
+      if (audio.paused) {
+          audio.play()
+      } else {
+        audio.currentTime = 0
+      }
+     },
      play() {
         var audio = document.getElementById('boom')
         if (audio.paused) {
@@ -91,7 +129,8 @@ export default {
         this.play()
       }
       if (this.devils.length == 0) {
-        alert('YOU WIN!!')
+        this.win = true
+        this.time = 100
       }
     },
     dx () {
@@ -131,6 +170,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#win, #lose {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+#win img, #lose img {
+  width: 100%;
+  height: 100%;
+}
+
+#time {
+  position: fixed;
+  top: 0;
+  left: 45vw;
+  font-size: 24px;
+}
+
 #hulk {
   position: absolute;
   width: 300px;
