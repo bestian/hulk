@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" tabindex="0" v-touch:swipe.left.prevent="dx2" v-touch:swipe.right.prevent="dx" v-touch:swipe.up.prevent="dy2" v-touch:swipe.down.prevent="dy">
+  <div class="hello" tabindex="0" v-touch:swipe.left="dx2" v-touch:swipe.right="dx" v-touch:swipe.up="dy2" v-touch:swipe.down="dy">
     <audio id="bg">
       <source src="bg.mp3" type="audio/mpeg">
       <source src="bg.ogg" type="audio/ogg">
