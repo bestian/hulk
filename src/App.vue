@@ -7,6 +7,11 @@
 </template>
 
 <style>
+
+html, body {
+  touch-action: manipulation;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
