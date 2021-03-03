@@ -11,7 +11,7 @@
     Your browser does not support the audio element.
     </audio>
     <div id = "time">還剩{{time}}秒</div>
-    <img id="hulk" src="./img/hulk.png" :style="{top: t + 'px', left:t2 + 'px'}">
+    <img id="hulk" src="./img/hulk.png" :style="{top: t + 'px', left:t2 + 'px'}" v-touch:moving="moveH">
     <img class="devil" v-for = "(d, idx) in devils" :id = "d.id" :key="idx" src="./img/devil.png" :style="{top: d.t + 'px', left:d.t2 + 'px'}">
     <div id = "ctrl">
       <button id = "up" @click="dy2">&#8593;
@@ -64,6 +64,15 @@ export default {
     document.addEventListener('keydown', this.move)
   },
   methods: {
+    moveH (e) {
+      if (window.parent === window && e.touches) {
+        var clientX = e.touches[0].clientX;
+        var clientY = e.touches[0].clientY;
+        this.t = clientY - 50;
+        this.t2 = clientX - 50;
+        this.kill();
+      }
+    },
     reset() {
       this.win = false
       this.lose = false
