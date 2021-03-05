@@ -1,6 +1,6 @@
 <template>
   <div class="hello" tabindex="0" v-touch:swipe.left="dx2" v-touch:swipe.right="dx" v-touch:swipe.up="dy2" v-touch:swipe.down="dy">
-    <audio id="bg" allow="autoplay">
+    <audio id="bg" allow="autoplay" controls="">
       <source src="bg.mp3" type="audio/mpeg">
       <source src="bg.ogg" type="audio/ogg">
     Your browser does not support the audio element.
