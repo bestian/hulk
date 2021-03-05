@@ -59,7 +59,7 @@ export default {
         }
     })
     setInterval(this.randmove, 100)
-    setInterval(this.addItem, 1500)
+    setInterval(this.addItem, 1000)
     setInterval(this.go, 1000)
     document.addEventListener('keydown', this.move)
   },
